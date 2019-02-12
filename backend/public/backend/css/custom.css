@@ -1,0 +1,19 @@
+.delete{
+	color: red;
+}
+.arrow{
+	color: #308ee0;
+}
+.table td{
+    white-space: normal !important;
+  }
+  .fa{
+  	font-size: 20px;
+
+  }
+  .dot{
+  	list-style-type: none;
+  }
+  /*.fa-window-restore{
+  	color: #308ee0;
+  }*/

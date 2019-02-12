@@ -1,0 +1,45 @@
+ul {
+    list-style-type: none;
+  }
+.name{
+      margin: 0px;
+      font-weight: bold;
+      text-transform: capitalize;
+       }
+       .type{
+           text-transform: uppercase;
+           
+       }
+       .holetype{
+        color: gray;
+       }
+       .button {
+        background-color: #ddd; /* Green */
+        border: none;
+        color: black;
+        height:35px;
+        width:35px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        padding:0px;
+        
+        justify-content: center;
+        cursor: pointer;
+      }
+      
+      .button1 {border-radius: 2px;}
+      .button2 {border-radius: 4px;}
+      .button3 {border-radius: 8px;}
+      .button4 {border-radius: 12px;}
+      .buttonCircle {border-radius: 50%;}       
+      .border{
+        background-color: lightgrey;
+  width: 25px;
+  border: 1px solid green;
+  padding: 25px;
+  margin: 25px;
+        
+        
+      }

@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Navbar</a>
+  
+  <form class="form-inline my-2 my-lg-0" #searchform=ngForm (ngSubmit)="onSubmit()">
+      <input class="form-control mr-sm-2" type="search" [(ngModel)]="form.search" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!searchform.valid" type="submit">Search</button>
+    </form>
+    <div>
+      <a class="navbar-brand" routerLink="login" *ngIf=!loggedIn>Login</a>
+      <a class="navbar-brand" href="#"(click)="logout($event)" *ngIf=loggedIn>Logout</a>
+      <a  class="navbar-brand" routerLink="profile" *ngIf=loggedIn>Profile
+ 
+      </a>
+      <a  class="navbar-brand" routerLink="cart" *ngIf=loggedIn>Cart
+ 
+      </a>
+      <a  class="navbar-brand" routerLink="wishlist" *ngIf=loggedIn>Wishlist
+ 
+      </a>
+    
+  
+    </div>
+    
+</nav>

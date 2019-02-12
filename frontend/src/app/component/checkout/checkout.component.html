@@ -1,0 +1,175 @@
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link white" (click)="getallexistingAddress()" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+         1.DELIVERY ADDRESS
+        </button>
+        <button  style="float: right;color:yellow;" class="btn btn-link btn btn-info " type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+          CHANGE
+        </button>
+      </h5>
+    </div>
+ 
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+    <div *ngFor="let data of showdata">
+      <div *ngFor="let d of data">
+        <input type="radio" required name="add" class="{{d['Name']}}_{{d['Id']}}" attr.data-element="{{d['Id']}}" value="{{d['Id']}}">
+        <p><strong>Name-{{d['Name']}}</strong>,Your Contect-{{d['Mobile_No']}},Address Details-{{d['Address_Details']}},
+          Pincode-{{d['PinCode']}},City-{{d['City']}},State-{{d['State']}},Country-{{d['Country']}},Type of Address-{{d['Address_Type']}}</p>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div id="collapseOne1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          <div class="card">
+              <div class="card-header" style="background:#ddd">Add New Address</div>
+              <div class="card-body">
+     <form class="simple-form" #Addressform=ngForm (ngSubmit)="onSubmit()">
+       <div class="form-group col-md-8 row">
+         <div class="col-md-4">
+           
+          <input type="text" required name="name"id="Inputname" [(ngModel)]="form.name" class="form-control" placeholder="Full Name" >
+          <div class="alert alert-danger" [hidden]="!error.name">
+              {{error.name}}
+            </div>
+        </div>
+      
+          <div class="col-md-4">
+              <input type="text" required id="Inputmob_no"name="mob_no" [(ngModel)]="form.mob_no" class="form-control" placeholder="10-digits mobile Number">
+              <div class="alert alert-danger" [hidden]="!error.mob_no">
+                  {{error.mob_no}}
+                </div>
+          </div>
+         
+       </div>
+     
+      <div class="form-group col-md-8 row">
+        <div class="col-md-4">
+            <input type="text" required id="inputpin" name="pin" [(ngModel)]="form.pin" class="form-control" placeholder="Pin code">
+            <div class="alert alert-danger" [hidden]="!error.pin">
+                {{error.pin}}
+              </div>
+        </div>
+         
+          <div class="col-md-4">
+              <input type="text" required id="Inputlocality"name="locality" [(ngModel)]="form.locality" placeholder="Locality" class="form-control">
+              <div class="alert alert-danger" [hidden]="!error.locality">
+                  {{error.locality}}
+                </div>
+          </div>
+         
+      </div>
+      <div class="form-group col-md-5">
+        <textarea name="description" required id="inputdescription" class="form-control" [(ngModel)]="form.description" cols="30" rows="10">Address (Area and Street)</textarea>
+        <div class="alert alert-danger" [hidden]="!error.description">
+            {{error.description}}
+          </div>
+      </div>
+      <div class="form-group col-md-8 row">
+        <div class="com-md-4" style="padding:0px 5px;">
+          <div class="card">
+        <div class="card-header" style="background:#ddd">Country</div>
+        <div class="card-body">
+            <select name="country" (change)="getstate()" required [(ngModel)]="form.country" class="form-control" id="inputcountry">
+             
+              <option *ngFor="let val of arr"  value="{{val.id}}" id="counrty">{{val.name}}</option>
+             
+             
+              </select>
+              <div class="alert alert-danger" [hidden]="!error.country">
+                  {{error.country}}
+                </div>
+        </div>
+          </div>
+           
+        </div>
+        <div class="com-md-4"style="padding:0px 5px;">
+            <div class="card">
+                <div class="card-header" style="background:#ddd">State</div>
+                <div class="card-body">
+                    <select name="state" (change)="getcity()" required [(ngModel)]="form.state" class="form-control" id="inputstate">
+                      <option *ngFor="let val of arr1"  value="{{val.id}}" id="counrty">{{val.name}}</option>
+                      </select>
+                      <div class="alert alert-danger" [hidden]="!error.state">
+                          {{error.state}}
+                        </div>
+                </div>
+                  </div>
+        </div>
+        <div class="com-md-4" style="padding:0px 5px;">
+            <div class="card">
+                <div class="card-header" style="background:#ddd">City/Town/Area</div>
+                <div class="card-body">
+                    <select name="city" required  [(ngModel)]="form.city"  class="form-control" id="inputcity">
+                      <option *ngFor="let val of arr2"  value="{{val.id}}" id="counrty">{{val.name}}</option>
+                      </select>
+                      <div class="alert alert-danger" [hidden]="!error.city">
+                          {{error.city}}
+                        </div>
+                </div>
+                  </div>
+        </div>
+      </div>
+  
+      <div class="form-group col-md-8">
+          <label for="inputtype" class="">Address Type</label>
+      </div>
+      <div class="form-group col-md-8 row">
+        <div class="col-md-3">
+            <input type="radio" required value="home"  id="inputtype"  [(ngModel)]="form.type"  name="type" >Home
+        </div>
+          <div class="col-md-9">
+              <input type="radio" re value="work" id="inputtype1" [(ngModel)]="form.type" name="type" >Work (Delivery between 10AM-5PM) 
+          </div>
+          <div class="alert alert-danger" [hidden]="!error.type">
+              {{error.type}}
+            </div>
+      </div>
+      <div class="form-group col-md-8" style="float:right">
+          <button type="submit" class="btn btn-primary" [disabled]="!Addressform.valid">Submit</button>
+      </div>
+     
+     </form>
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link white collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          2.ORDER SUMMARY
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+      
+ 
+      <app-cart></app-cart>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link white collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+         3.PAYMENT
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <button type="button" (click)="order()">Click to complete</button>
+      </div>
+    </div>
+  </div>
+ </div>
+ 
+ 

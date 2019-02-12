@@ -1,0 +1,33 @@
+ul {
+    list-style-type: none;
+  }
+.name{
+      margin: 0px;
+      font-weight: bold;
+      text-transform: capitalize;
+       }
+       .type{
+           text-transform: uppercase;
+           
+       }
+       .holetype{
+        color: gray;
+       }
+       .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 5px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      
+      .button1 {border-radius: 2px;}
+      .button2 {border-radius: 4px;}
+      .button3 {border-radius: 8px;}
+      .button4 {border-radius: 12px;}
+      .buttonCircle {border-radius: 50%;}       

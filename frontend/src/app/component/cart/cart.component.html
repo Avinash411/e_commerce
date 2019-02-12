@@ -1,0 +1,73 @@
+
+  <div class="col-md-8">
+   <div class="card">
+      <div class="card-header">MY CART</div>
+  <ul style="padding:0px;">
+      <li class="card-body"
+       *ngFor="let item of card">
+    <ul style="padding:0px;">
+      
+      <div class="row" style="border-bottom: 1px solid #ddd">
+          <div class="col-md-2">
+              <img src="{{VariantimgBaseUrl}}{{item['variants'].type_image[0]}} " height="100" width="100" >
+          </div>
+          <div class="col-md-10">
+          <div class="" style="padding-left: 65px;">
+              <li class="name">{{item['name']}}</li>
+              
+          
+              <li>
+                
+                <strong><span style="margin-right: 20px;">Quantity</span></strong> 
+               
+                <span class="button buttonCircle" (click)=decrease($event) attr.data-element="{{item['variants'].variants_id}}">-</span>
+                <span class="border" style="padding:10px;"><strong id="item_{{item['variants'].variants_id}}"> {{item['cart_qauntity']}}</strong></span> 
+                <span class="button buttonCircle" (click)=increase($event) attr.data-element="{{item['variants'].variants_id}}">+</span>
+              </li>  
+
+              <li class="holetype"><span style="margin-right: 20px;">Type:</span><span class="type">{{item['variants'].type}}</span></li>
+              
+              
+             <li>
+                <ul class="list-inline">
+                    <li class="list-inline-item" style="margin-right:80px;"><b><h3>&#8377;{{item['variants'].rates.sale_price}}</h3></b></li>
+            
+                    <li class="list-inline-item text-info" style="text-decoration: line-through;margin-right:80px;">&#8377;{{item['variants'].rates.actual_price}}</li>
+                    <li class="list-inline-item text-success" >{{item['variants'].rates.discount_in_percentage}}%OFF</li>
+                    
+                </ul>
+             </li>
+             <li>
+              <a >
+                 
+                <button type="button" class="btn btn-info" style="float:right; margin-top:-40px;" (click)=remove($event) attr.data-element="{{item['variants'].variants_id}}" >Remove</button>
+              </a>
+             </li>
+          </div>
+        </div>
+      </div>
+    </ul>
+
+     
+  
+    
+  
+  </li>
+  </ul>
+ <div class="" style="text-align: right;padding:10px 28px;">
+
+  <a style="padding:10px">
+                 
+    <button type="button" class="btn btn-secondary" style="" (click)=moreshopping() >Continue Shopping</button>
+  </a>
+  <a >
+                 
+    <button type="button" class="btn btn-info" style="background:#fb641b;" (click)=checkout()  >Place in Order</button>
+  </a>
+ </div>
+
+   </div>
+  </div>
+  
+
+

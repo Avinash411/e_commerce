@@ -1,0 +1,22 @@
+.variant_block
+{
+    padding: 15px;
+    border: 1px solid #212121;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+}
+.add_selected{
+  border: 2px solid blue !important;
+
+}
+.add_forselected{
+ border: 2px solid green;
+}
+.required_field{
+  border: 1px solid red;
+  box-shadow: #ddd;
+  padding:10px;
+  
+}

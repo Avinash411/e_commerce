@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="card col-md-3">
+    <label><strong>Show results for</strong></label><hr>
+    <label> <b>Categories</b> </label>
+  
+    
+    <ul style=" list-style:none;">
+    
+  <div *ngFor="let r of root">
+      <a (click)="getItemBycategory(r.type)"><li style="color:blue"> {{r.value}}</li></a> 
+  </div>
+  
+     
+      
+     
+      </ul>
+      <hr>
+      <form id="filterform" (click)="filter()" data-form="form-1">
+        <input type="hidden" name="cat_id" value="key" >
+      <label><b>PRICE</b></label><br>
+      
+      
+        Min Price:
+      <input type="number" name="min"><br>
+        Max Price:
+        <input type="number" name="max" >
+      
+      <hr>
+      <label><b> All Variant</b></label>
+      
+      <hr>
+      <div *ngFor="let value of variant">
+        <input type="hidden" name="variant[]" value="{{value['type']}}">
+
+   <label>{{value['type']}}</label>
+      <div *ngFor="let val of value['value']">
+          <span>
+      <input type="checkbox" name="{{value['type']}}[]" value="{{val['value']}}">{{val['value']}}</span>
+        
+      </div>
+     
+      
+    </div>
+      <hr>
+      <label><b>Brand</b></label>
+      
+      
+      <div *ngFor="let b of brand">
+      
+      
+      <span><input type="checkbox" name="brand[]" value="{{b}}" #brand>{{b}}</span>
+      
+    </div>
+      
+      
+      <hr>
+      
+      
+      <label><b>DISCOUNT</b></label><br>
+       <input type="checkbox" name="discount[]" value="10">10%discount <br>
+       <input type="checkbox" name="discount[]" value="20">20%discount <br>
+       <input type="checkbox" name="discount[]" value="30">30%discount <br>
+       <input type="checkbox" name="discount[]" value="40">40%discount <br>
+       
+     
+      </form>
+    
+  </div>
+  
+
+<div class="card col-md-8" style="margin-left: 50px">
+  <div class="row">
+    <label style="margin-left: 10px"><strong>Sort By</strong></label>
+    <ul style=" list-style:none;display: flex;">
+      <div class="popularity"><li>  <a (click)="ngOnInit()">Popularity</a> </li></div>
+         <div class="low_high"><li style="margin-left: 50px"><a  (click)="increase(key)">Price -- Low to High</a></li></div>
+       <div class="high_low"><li style="margin-left: 50px"><a (click)="decrease(key)">Price -- High to Low</a></li></div>
+       <div class="newest"><li style="margin-left: 50px"><a (click)="newest(key)">Newest First</a></li></div>
+  
+    </ul>
+  
+  </div>
+  <ul style=" list-style:none;">
+    
+      <div *ngFor="let r of root">
+          <a (click)="getItemBycategory(r.type)"><li style="float:left;color: blue;">{{r.value}} <span>-></span></li></a> 
+      </div>
+      
+         
+          
+         
+          </ul>
+<hr>
+<div *ngFor="let product_data of mydata">
+  
+  <app-product [data]="product_data" [imgBaseUrl]="imgBaseUrl"></app-product>
+  
+<hr>
+</div>
+</div>
+
+
+
